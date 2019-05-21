@@ -42,14 +42,31 @@ public class Exceldata {
 System.out.println(temp[0]+" and" +temp[1]);
 	return temp ;	
 }
-	public String GetRowsvalue(String filename)
+	public String[] GetRowsvalue(String filename)
 	{
+		
 		Sheet sheetemp=getexcelsheet(filename,"");
 		int[] temp=GetRowColumn(filename);
 		int row=temp[0];int clmn=temp[1];
-		Cell clmnhdr=sheetemp.findCell("Test");
-		clmnhdr.getColumn();
-		return null;
+		Cell clmnhdr=sheetemp.findCell("ts1");
+		
+		String[] Rowvlue=new String[row];
+		int[] temp1 = new int[row];
+		int cl =clmnhdr.getColumn(); int j=0;
+		for(int i=1;i<row;i++)
+		{
+			boolean a;
+			if( a=sheetemp.getCell(cl,i).getContents().equals("ts1"))
+		 {
+				Rowvlue[i]=sheetemp.getCell(cl,i).getContents();
+				temp1[i]=sheetemp.getCell(cl,i).getRow();
+			System.out.println(Rowvlue[i]+ " " + temp1[i]);
+			
+			if( a=sheetemp.getCell(cl,i).getContents().equals("ts1"))
+			System.out.println("row values " + Rowvlue[i]);
+			}
+		}
+		return Rowvlue;
 	}
 	
 	public String Exceldata1(String FileName)
